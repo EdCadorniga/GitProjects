@@ -49,7 +49,8 @@ To use these scripts:
    - Ensure that the Google Apps Script project has the necessary permissions to access the Secret Manager.
 
 4. **Triggers**:
-   - Set up triggers in Google Apps Script to automatically run the `refreshToken()` function at regular intervals (e.g., every hour).
+
+   - It's recommended to set triggers in Google Apps Script to automatically run the for refreshing tokens in `MYOB_RefreshTokens.gs` to every 55 minutes. This ensures that access tokens are refreshed before they expire.
 
 ## Contributing
 
