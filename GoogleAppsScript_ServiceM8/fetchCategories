@@ -1,0 +1,1 @@
+fetchFromServiceM8API("category.json", "Categories");

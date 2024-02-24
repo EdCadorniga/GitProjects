@@ -1,0 +1,21 @@
+/**
+ * Fetches data from the ServiceM8 API and displays the result in the specified sheet.
+ * @param {string} endpoint - The API endpoint to fetch data from.
+ * @param {string} sheetName - The name of the sheet to display the result in.
+ */
+function fetchFromServiceM8API(endpoint, sheetName) {
+    var url = "https://api.servicem8.com/api_1.0/" + endpoint; // Construct the full API endpoint URL
+  
+    var options = {
+      'method': 'GET',
+      'muteHttpExceptions': false,
+      'headers': {
+        'Authorization': 'Basic ' + SERVICE_M8_TOKEN, // Utilize the global token variable
+        'Content-Type': 'application/json',
+      }
+    };
+  
+    var response = UrlFetchApp.fetch(url, options); // Make the API request
+    displayResult(sheetName, response); // Display the result with the provided sheetName
+  }
+  
