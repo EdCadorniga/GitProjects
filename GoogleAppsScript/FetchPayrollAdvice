@@ -1,0 +1,40 @@
+/**
+ * Function: fetchPayrollAdvice
+ * Description: Fetches payroll advice data from an API and parses it into a Google Sheet.
+ * Parameters:
+ *   - token: Authorization token for API access.
+ *   - myobClientId: MYOB client ID for API access.
+ *   - sheetName: Name of the Google Sheet to insert the data.
+ */
+function fetchPayrollAdvice(token, myobClientId, sheetName) {
+    var url = 'https://ar1.api.myob.com/accountright/9287a793-48c7-4e86-ac84-d050135b8671/Report/Payroll/EmployeePayrollAdvice?$filter=PaymentDate%20eq%20datetime%272021-09-21T00:00:00%27';
+
+    var options = {
+        'method': 'GET',
+        'muteHttpExceptions': false,
+        'headers': {
+            'Connection': 'keep-alive',
+            'Authorization': token,
+            'x-myobapi-key': myobClientId,
+            'x-myobapi-version': 'v2',
+        }
+    };
+
+    var response = UrlFetchApp.fetch(url, options);
+    var responseCode = response.getResponseCode();
+
+    if (responseCode === 200) {
+        var responseData = JSON.parse(response.getContentText());
+        var parsedData = parse_JSON_Data_to_GoogleSheets(responseData, null, null);
+
+        if (parsedData.length > 0) {
+            var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+            var range = sheet.getRange(1, 1, parsedData.length, parsedData[0].length);
+            range.setValues(parsedData);
+        } else {
+            console.log("Parsed data is empty. No data inserted into the sheet.");
+        }
+    } else {
+        console.log("Failed to fetch payroll advice data. Response code: " + responseCode);
+    }
+}
