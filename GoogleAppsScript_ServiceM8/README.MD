@@ -4,14 +4,13 @@ This repository contains Google Apps Script functions to integrate with the Serv
 
 ## Scripts
 
-### 1. `fetchFromServiceM8API`
+### 1. fetchFromServiceM8API
 
 This script fetches data from the ServiceM8 API and displays the result in the specified sheet.
 
 Usage:
 
-```javascript
-fetchFromServiceM8API(endpoint, sheetName);
+`fetchFromServiceM8API(endpoint, sheetName);`
 
 
 endpoint: The API endpoint to fetch data from.
@@ -23,21 +22,20 @@ This script parses the JSON response from the API and fills out the active sprea
 
 Usage:
 
-displayResult(responseText);
-responseText: The JSON response text to parse.
+`displayResult(responseText);`
 
+responseText: The JSON response text to parse.
 
 ### 3. getSecretValue
 This script retrieves a token from Google Secret Manager.
 
 Usage:
 
-var token = getSecretValue(secretName, projectId, version);
+`var token = getSecretValue(secretName, projectId, version);`
 
-
-secretName: The name of the secret containing the token.
-projectId: The ID of the Google Cloud project (default: "YOUR_PROJECT_ID").
-version: The version of the secret (default: "latest").
+- secretName: The name of the secret containing the token.
+- projectId: The ID of the Google Cloud project (default: "YOUR_PROJECT_ID").
+- version: The version of the secret (default: "latest").
 
 
 ## Saving Token in Google Secret Manager
@@ -53,5 +51,4 @@ To use these scripts, you need to save your ServiceM8 API token in Google Secret
 
 ServiceM8 API utilizes Basic Authentication. You need to provide your API token as the username and leave the password empty. For more details, refer to the ServiceM8 API Authentication Documentation.
 
-This `README.md` provides an overview of the scripts, their usage, instructions for saving the token in Google Secret Manager, and a reference to ServiceM8's API Authentication documentation.
-```
+This `README.md` provides an overview of the scripts, their usage, instructions for saving the token in Google Secret Manager, and a reference to ServiceM8 API [Authentication documentation.](https://developer.myob.com/api/myob-business-api/api-overview/authentication/ "Authentication documentation.")
